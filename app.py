@@ -1,8 +1,3 @@
-"""
-CryptoSign - Open-Source PKI Cryptographic Tool
-ST6051CEM - Practical Cryptography Assignment
-"""
-
 import os
 import json
 import hashlib
@@ -21,7 +16,7 @@ from crypto_utils import (generate_rsa_keypair, sign_file_data,
                           get_key_fingerprint, generate_certificate,
                           encrypt_message, decrypt_message)
 
-# App Configuration
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-change-in-production-xyz')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cryptosign.db'
@@ -39,26 +34,26 @@ login_manager.login_view = 'login'
 login_manager.login_message = 'Please log in to access this page.'
 login_manager.login_message_category = 'warning'
 
-# Database Models
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id            = db.Column(db.Integer, primary_key=True)
     username      = db.Column(db.String(80),  unique=True, nullable=False)
     email         = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
-    role          = db.Column(db.String(20),  default='user')   # 'user' | 'admin'
+    role          = db.Column(db.String(20),  default='user')   
     _is_active    = db.Column('is_active', db.Boolean, default=True)
-    # Timed block: blocked until this datetime (null = not blocked)
+    
     blocked_until = db.Column(db.DateTime, nullable=True)
     created_at    = db.Column(db.DateTime, default=datetime.utcnow)
-    # Security questions
+    
     sec_q1        = db.Column(db.String(200), nullable=False)
     sec_a1_hash   = db.Column(db.String(256), nullable=False)
     sec_q2        = db.Column(db.String(200), nullable=False)
     sec_a2_hash   = db.Column(db.String(256), nullable=False)
     sec_q3        = db.Column(db.String(200), nullable=False, server_default='')
     sec_a3_hash   = db.Column(db.String(256), nullable=False, server_default='')
-    # Relationships
+    
     keypairs      = db.relationship('KeyPair',    backref='owner',  lazy=True, cascade='all, delete-orphan')
     signed_files  = db.relationship('SignedFile', backref='signer', lazy=True, cascade='all, delete-orphan')
 
@@ -83,7 +78,7 @@ class User(UserMixin, db.Model):
     def is_admin(self):
         return self.role == 'admin'
 
-    # Override UserMixin.is_active so Flask-Login reads our DB column
+    
     @property
     def is_active(self):
         return bool(self._is_active)
