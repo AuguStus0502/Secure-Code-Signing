@@ -8,7 +8,7 @@
 **Course:** ST6051CEM — Practical Cryptography
 **Institution:** Softwarica College of IT & E-Commerce | In collaboration with Coventry University
 **GitHub:** [https://github.com/AuguStus0502/Secure-Code-Signing](https://github.com/AuguStus0502/Secure-Code-Signing)
-
+**Video Demo:** [https://youtu.be/nFa3lsYcrFc](https://youtu.be/nFa3lsYcrFc)
 
 ---
 
@@ -51,18 +51,18 @@ Think of it as a mini version of the cryptographic systems used by banks, law fi
 ### Installation
 
 ```bash
-
+# 1. Clone the repository
 git clone https://github.com/AuguStus0502/Secure-Code-Signing.git
 cd Secure-Code-Signing
 
-
+# 2. Create and activate a virtual environment (recommended)
 python -m venv venv
-source venv/bin/activate        
+source venv/bin/activate        # Windows: venv\Scripts\activate
 
-
+# 3. Install dependencies
 pip install -r requirements.txt
 
-
+# 4. Run the application
 python app.py
 ```
 
@@ -127,11 +127,11 @@ Each certificate's **SHA-256 fingerprint** can be pinned by clients. Any certifi
 ## Running Tests
 
 ```bash
-
+# Using pytest (recommended)
 pip install pytest
 pytest tests/ -v
 
-
+# Using built-in unittest (no extra dependencies)
 python -m unittest discover tests/ -v
 ```
 
@@ -152,19 +152,19 @@ The test suite covers **39 test cases** across 8 categories:
 
 ```
 Secure-Code-Signing/
-├── app.py                     
-├── crypto_utils.py            
-├── requirements.txt           
+├── app.py                     # Flask application, routes, models
+├── crypto_utils.py            # All cryptographic primitives
+├── requirements.txt           # Python dependencies
 ├── README.md
 ├── tests/
 │   ├── __init__.py
-│   └── test_crypto_utils.py   
+│   └── test_crypto_utils.py   # 39 unit + attack simulation tests
 ├── templates/
-│   ├── admin/                 
-│   └── *.html                 
-├── static/                    
-├── keystores/                 
-└── instance/                  
+│   ├── admin/                 # Admin panel templates
+│   └── *.html                 # User-facing templates
+├── static/                    # CSS, JS, images
+├── keystores/                 # Encrypted private keys (gitignored)
+└── instance/                  # SQLite database (gitignored)
 ```
 
 ---
