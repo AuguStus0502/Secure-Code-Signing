@@ -37,18 +37,18 @@ A web-based **Public Key Infrastructure (PKI) tool** for digital file signing, s
 ### Installation
 
 ```bash
-# 1. Clone the repository
+
 git clone https://github.com/AuguStus0502/CryptoSign.git
 cd cryptosign
 
-# 2. Create and activate a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
 
-# 3. Install dependencies
+python -m venv venv
+source venv/bin/activate        
+
+
 pip install -r requirements.txt
 
-# 4. Run the application
+
 python app.py
 ```
 
@@ -108,11 +108,11 @@ Each certificate's **SHA-256 fingerprint** can be pinned. Any certificate substi
 ## Running Tests
 
 ```bash
-# Using pytest (recommended)
+
 pip install pytest
 pytest tests/ -v
 
-# Using built-in unittest (no extra dependencies)
+
 python -m unittest discover tests/ -v
 ```
 
@@ -124,19 +124,19 @@ The test suite covers **39 test cases** across 8 categories including simulated 
 
 ```
 cryptosign/
-├── app.py                     # Flask application, routes, models
-├── crypto_utils.py            # All cryptographic primitives
+├── app.py                     
+├── crypto_utils.py            
 ├── requirements.txt
 ├── README.md
 ├── LICENSE
 ├── tests/
-│   └── test_crypto_utils.py   # Unit + attack simulation tests
+│   └── test_crypto_utils.py   
 ├── templates/
 │   ├── admin/
 │   └── *.html
 ├── static/
-├── keystores/                 # Encrypted private keys (gitignored)
-└── instance/                  # SQLite database (gitignored)
+├── keystores/                 
+└── instance/                  
 ```
 
 ---
